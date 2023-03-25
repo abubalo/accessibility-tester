@@ -4,7 +4,7 @@ Website Accessibility Tester is a web-based tool built with React and Pa11y for 
 
 ## Demo
 
-You can try out the live demo of the Website Accessibility Tester at [insert URL here].
+You can try out the live demo of the Website Accessibility Tester at https://accessibility-tester.vercel.app.
 
 ## Features
 
@@ -26,13 +26,7 @@ You can try out the live demo of the Website Accessibility Tester at [insert URL
 3. Wait for the test results to appear
 4. Review the results and make any necessary changes to improve accessibility
 
-## Contributing
 
-If you'd like to contribute to Website Accessibility Tester, feel free to submit a pull request. Bug reports and feature requests are also welcome.
-
-## License
-
-Website Accessibility Tester is released under the MIT License. See `LICENSE` for more information.
 
 ## Acknowledgements
 
@@ -45,6 +39,4 @@ Website Accessibility Tester was built using the following technologies:
 
 While Website Accessibility Tester provides a fast and efficient way to identify potential accessibility issues, it's always a good idea to manually review and test the website for additional issues. This tool is not a substitute for manual accessibility testing. 
 
-## Contact
 
-If you have any questions or feedback, please don't hesitate to contact us at [insert contact information here].
