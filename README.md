@@ -1,6 +1,6 @@
 # Website Accessibility Tester
 
-Website Accessibility Tester is a web-based tool built with React and Pa11y for automated testing of web applications' compliance with accessibility standards. With this tool, you can quickly check for common accessibility issues such as low color contrast, missing alt text, and more. Improving your website's accessibility is crucial to making it available to all users.
+Website Accessibility Tester is a web-based tool built with React, Pa11y, and Node.js for automated testing of web applications' compliance with accessibility standards. With this tool, you can quickly check for common accessibility issues such as low color contrast, missing alt text, and more. Improving your website's accessibility is crucial to making it available to all users.
 
 ## Demo
 
