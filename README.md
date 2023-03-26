@@ -4,7 +4,7 @@ Website Accessibility Tester is a web-based tool built with React, Pa11y, and No
 
 ## Demo
 
-You can try out the live demo of the Website Accessibility Tester at https://accessibility-tester.vercel.app.
+You can try out the live demo of the Website Accessibility Tester at [accessibility-tester](https://accessibility-tester.vercel.app).
 
 ## Features
 
