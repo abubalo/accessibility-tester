@@ -79,13 +79,13 @@ export default function Home() {
         {isLoading && <Loader />}
         {results &&
           results.length > 0 &&
-          results.map((result) => (
+          results.map((result, index) => (
             <div
-              key={result.message}
-              className="flex flex-col w-full p-6 space-y-3 border border-gray-300 rounded-lg bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:p-4 lg:w-auto"
+              key={index}
+              className="flex flex-col w-full p-6 space-y-3 border border-gray-100 rounded-lg bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:p-4 lg:w-auto"
             >
               <p>{result.message}</p>
-              <code className="block p-2 bg-gray-300 rounded-md dark:bg-neutral-300/20">
+              <code className="block p-2 rounded-md bg-gray-50/10 dark:bg-neutral-100/50">
                 {result.context}
               </code>
             </div>
