@@ -5,8 +5,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const {url} = req.body;
+  const { url } = req.body;
   console.log("URL: ", req.body);
+
+  // Check if the URL is valid
+  const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+  if (!urlRegex.test(url)) {
+    return res.status(400).json({ error: "Invalid URL format" });
+  }
 
   if (!url || typeof url !== "string" || url === "") {
     return res.status(400).json({ error: "Invalid url" });
@@ -20,5 +26,3 @@ export default async function handler(
     res.status(500).json({ error: "Failed to perform accessibility testing" });
   }
 }
-
-
