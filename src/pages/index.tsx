@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
+import Toast from "./Toast";
 
 type pa11yResults = {
   message: string;
@@ -15,11 +16,11 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+    event.preventDefault();
     try {
       setIsLoading(true);
       const response = await axios.post("/api/server", { url: inputValue });
-      const {issues} = await response.data;
+      const { issues } = await response.data;
       setResults(issues);
     } catch (error: any) {
       setErrorMessage(error.message);
@@ -29,15 +30,15 @@ export default function Home() {
     setIsLoading(false);
   }
 
-  useEffect(()=>{
-    if(onError){
-      setTimeout(()=>{
-        setOnError(false)
-      },3000)
+  useEffect(() => {
+    if (onError) {
+      setTimeout(() => {
+        setOnError(false);
+      }, 3000);
     }
-  },[onError])
+  }, [onError]);
   return (
-    <main className={`relative min-h-screen p-24 `}>
+    <main className={`relative min-h-screen p-24 overflow-hidden`}>
       <div className="flex flex-col items-center justify-center mb-12 space-y-4">
         <div className="w-full space-y-3 text-center">
           <h1 className="text-3xl font-semibold lg:text-6xl">
@@ -45,7 +46,10 @@ export default function Home() {
           </h1>
           <p>Get a realtime feedback about your website performance</p>
         </div>
-        <form onSubmit={handleSubmit} className="flex w-5/6 gap-2 p-3 border border-gray-500 rounded-md lg:w-1/2">
+        <form
+          onSubmit={handleSubmit}
+          className="flex w-5/6 gap-2 p-3 border border-gray-500 rounded-md lg:w-1/2"
+        >
           <input
             value={inputValue}
             type="text"
@@ -85,14 +89,13 @@ export default function Home() {
               className="flex flex-col w-full p-6 space-y-3 border border-gray-100 rounded-lg bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:p-4 lg:w-auto"
             >
               <p>{result.message}</p>
-              <code className="block p-2 rounded-md bg-gray-50/10 dark:bg-neutral-100/50">
+              <code className="block p-2 rounded-md bg-gray-50/10 dark:bg-neutral-700/30">
                 {result.context}
               </code>
             </div>
           ))}
       </div>
-      <div
-        className={`absolute bg-red-500 px-4 py-2 top-5 right-2 transform  dark:bg-white dark:text-red-500 ${onError ? "translate-x-0" : "translate-x-full"}`}>Error: {errorMessage}</div>
+      <Toast onError={onError} message={errorMessage}/>
     </main>
   );
 }
