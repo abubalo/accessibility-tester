@@ -22,7 +22,8 @@ export default async function handler(
       try {
         const result = await pa11y(url);
         res.json(result);
-      } catch (error) {
+      } catch (error: any) {
+        console.error(error.message);
         res.status(500).json({ error: "Failed to perform accessibility testing" });
       }
 }
