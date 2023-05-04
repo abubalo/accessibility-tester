@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loader from "./Loader";
-import Toast from "./Toast";
+import Toast from "./ErrorMessage";
 
 type pa11yResults = {
   message: string;
@@ -13,28 +13,33 @@ export default function Home() {
   const [results, setResults] = useState<pa11yResults>([]);
   const [onError, setOnError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isRequestProcessing, setIsRequestProcessing] = useState<boolean>(false)
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setResults([]);
     try {
       setIsLoading(true);
+      setIsRequestProcessing(true);
       const response = await axios.post("/api/server", { url: inputValue });
       const { issues } = await response.data;
       setResults(issues);
     } catch (error: any) {
-      setErrorMessage(error.message);
+      const errorMessage = error.response.data.error
+      setErrorMessage(errorMessage);
       setOnError(true);
     }
     setInputValue("");
     setIsLoading(false);
+    setIsRequestProcessing(false)
   }
 
   useEffect(() => {
     if (onError) {
       setTimeout(() => {
         setOnError(false);
-      }, 3000);
+      }, 5000);
     }
   }, [onError]);
   return (
@@ -42,7 +47,7 @@ export default function Home() {
       <div className="flex flex-col items-center justify-center mb-12 space-y-4">
         <div className="w-full space-y-3 text-center">
           <h1 className="text-3xl font-semibold lg:text-6xl">
-            Website Accessibilty Tester
+            Website Accessibility Tester
           </h1>
           <p>Get a realtime feedback about your website performance</p>
         </div>
@@ -57,6 +62,7 @@ export default function Home() {
             placeholder="Enter website url"
             className="w-full bg-transparent focus:outline-none"
             autoFocus
+            disabled={isRequestProcessing}
           />
           <button
             type="submit"
